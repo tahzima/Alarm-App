@@ -34,14 +34,22 @@ public class MainActivity extends AppCompatActivity {
 
                 int v1 = Integer.parseInt(e1.getText().toString());
                 int v2 = Integer.parseInt(e2.getText().toString());
-                Toast.makeText(getApplicationContext(),"Alarme done ",Toast.LENGTH_LONG).show();
-                AlarmManager a=(AlarmManager)getSystemService(ALARM_SERVICE);
-                PendingIntent p=PendingIntent.getService(getApplicationContext(),0,i1,0);
-                Calendar c=Calendar.getInstance();
-                c.set(Calendar.HOUR_OF_DAY,v1);
-                c.set(Calendar.MINUTE,v2);
-                c.set(Calendar.SECOND,00);
-                a.setRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),0,p);
+                if (e1.getText().toString()!=null && e2.getText().toString()!=null){
+                    if(v1>=0 && v2>=0){
+                        Toast.makeText(getApplicationContext(),"Alarme done ",Toast.LENGTH_LONG).show();
+                        AlarmManager a=(AlarmManager)getSystemService(ALARM_SERVICE);
+                        PendingIntent p=PendingIntent.getService(getApplicationContext(),0,i1,0);
+                        Calendar c=Calendar.getInstance();
+                        c.set(Calendar.HOUR_OF_DAY,v1);
+                        c.set(Calendar.MINUTE,v2);
+                        c.set(Calendar.SECOND,00);
+                        a.setRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),0,p);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Valeurs non valide !!!!! ",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(),"Erreur dans les zones de text !!!!! ",Toast.LENGTH_LONG).show();
+                }
 
 
             }
